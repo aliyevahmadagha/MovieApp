@@ -62,3 +62,10 @@ extension TopRatedResult: CellProtocol {
         imageBasePath + (posterPath ?? "")
     }
 }
+
+extension TopRatedResult {
+    
+    func mapToDomain() -> MovieDetail  {
+        .init(icon: iconURL, title: movieName, date: movieDate)
+    }
+}

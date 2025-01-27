@@ -74,3 +74,11 @@ extension TrendingResult: CellProtocol {
     }
 }
 
+// MARK: Movie Detail
+
+extension TrendingResult {
+    
+    func mapToDomain() -> MovieDetail  {
+        .init(icon: iconURL, title: movieName, date: movieDate)
+    }
+}

@@ -109,8 +109,8 @@ final class HomeController: BaseController {
     
     override func configureRestriction() {
         super.configureRestriction()
-        movieCollection.fillSuperview()
-        loadingView.fillSuperview()
+        movieCollection.fillSuperviewSafeAreaLayoutGuide()
+        loadingView.fillSuperviewSafeAreaLayoutGuide()
     }
 }
 
@@ -212,6 +212,10 @@ extension HomeController: UICollectionViewDelegate, UICollectionViewDataSource {
         default:
             0
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        viewModel.detectSection(indexPath: indexPath)
     }
 }
 

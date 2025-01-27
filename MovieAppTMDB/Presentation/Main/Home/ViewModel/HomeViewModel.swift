@@ -5,6 +5,8 @@
 //  Created by Khalida Aliyeva on 14.01.25.
 //
 
+import Foundation
+
 final class HomeViewModel {
     
     enum viewState {
@@ -39,7 +41,10 @@ final class HomeViewModel {
     private(set) var topRatedList: TopRatedDTO?
     private(set) var nowPlayingList: NowPlayingDTO?
     
-    init() {
+    weak var navigation: HomeNavigation?
+    
+    init(navigation: HomeNavigation) {
+        self.navigation = navigation
         trendingUsaCase = TrendingAPIService()
         movieListsUseCase = MoviesAPIService()
     }
@@ -158,5 +163,32 @@ final class HomeViewModel {
     
     func getNowPlayingItem(index: Int) -> NowPlayingResult? {
         nowPlayingList?.results?[index]
+    }
+    
+    func detectSection(indexPath: IndexPath) {
+        
+        switch indexPath.section {
+        case 1:
+            guard let item = getTrendingItem(index: indexPath.row)?.mapToDomain() else {return}
+            showDetail(detail: item)
+        case 3:
+            guard let item = getPopularItem(index: indexPath.row)?.mapToDomain() else {return}
+            showDetail(detail: item)
+        case 5:
+            guard let item = getTopRatedItem(index: indexPath.row)?.mapToDomain() else {return}
+            showDetail(detail: item)
+        case 7:
+            guard let item = getUpcomingItem(index: indexPath.row)?.mapToDomain() else {return}
+            showDetail(detail: item)
+        case 9:
+            guard let item = getNowPlayingItem(index: indexPath.row)?.mapToDomain() else {return}
+            showDetail(detail: item)
+        default:
+            return
+        }
+    }
+    
+    fileprivate func showDetail(detail: MovieDetail) {
+        navigation?.showDetail(detail: detail)
     }
 }

@@ -18,7 +18,17 @@ final class HomeCoordinator: Coordinator {
     }
     
     func start() {
-        let controller = HomeController(viewModel: .init())
+        let controller = HomeController(viewModel: .init(navigation: self))
         showController(controller: controller)
     }
+}
+
+extension HomeCoordinator: HomeNavigation {
+     
+    func showDetail(detail: MovieDetail) {
+        let controller = MovieDetailController(viewModel: .init(navigation: self, movieDetail: detail))
+        showController(controller: controller)
+    }
+    
+    
 }

@@ -42,7 +42,7 @@ final class TabBarCoordinator: Coordinator {
         
         // Profile Controller
         let profileController = UINavigationController()
-        homeController.setNavigationBarHidden(true, animated: false)
+        profileController.setNavigationBarHidden(true, animated: false)
         profileCoordinator = ProfileCoordinator(navigationController: profileController)
         profileCoordinator?.parentCoordinator = self
         profileCoordinator?.start()
@@ -53,9 +53,7 @@ final class TabBarCoordinator: Coordinator {
         profileTab.selectedImage = UIImage(systemName: "person.fill")
         profileController.tabBarItem = profileTab
         
-        
         tabBarController.viewControllers = [homeController, profileController]
-        
         navigationController.pushViewController(tabBarController, animated: true)
         
         self.children.append(homeCoordinator ?? HomeCoordinator(navigationController: UINavigationController()))

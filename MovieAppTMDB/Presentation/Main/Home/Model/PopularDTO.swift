@@ -64,3 +64,10 @@ extension PopularResult: CellProtocol {
     }
 }
 
+
+extension PopularResult {
+    
+    func mapToDomain() -> MovieDetail  {
+        .init(icon: iconURL, title: movieName, date: movieDate)
+    }
+}

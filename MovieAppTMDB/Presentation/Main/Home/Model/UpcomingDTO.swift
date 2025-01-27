@@ -70,3 +70,10 @@ extension UpcomingResult: CellProtocol {
         imageBasePath + (posterPath ?? "")
     }
 }
+
+extension UpcomingResult {
+    
+    func mapToDomain() -> MovieDetail  {
+        .init(icon: iconURL, title: movieName, date: movieDate)
+    }
+}

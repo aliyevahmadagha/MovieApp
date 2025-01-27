@@ -67,3 +67,10 @@ extension NowPlayingResult: CellProtocol {
         imageBasePath + (posterPath ?? "")
     }
 }
+
+extension NowPlayingResult {
+    
+    func mapToDomain() -> MovieDetail  {
+        .init(icon: iconURL, title: movieName, date: movieDate)
+    }
+}
