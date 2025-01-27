@@ -50,7 +50,6 @@ final class HomeController: BaseController {
     }
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         configureCollection()
         configureViewModel()

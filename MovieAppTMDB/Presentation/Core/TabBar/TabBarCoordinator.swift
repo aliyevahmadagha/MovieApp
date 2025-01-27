@@ -17,15 +17,50 @@ final class TabBarCoordinator: Coordinator {
         self.navigationController = navigationController
     }
     
+    private var tabBarController = TabBarController()
+    private var homeCoordinator: HomeCoordinator?
+    private var profileCoordinator: ProfileCoordinator?
+    
     func start() {
         showTabbar()
     }
     
     fileprivate func showTabbar() {
         
-        let controller = TabBarController()
-        showController(controller: controller)
+        // Home Controller
+        let homeController = UINavigationController()
+        homeController.setNavigationBarHidden(true, animated: false)
+        homeCoordinator = HomeCoordinator(navigationController: homeController)
+        homeCoordinator?.parentCoordinator = self
+        homeCoordinator?.start()
         
+        let homeTab = UITabBarItem()
+        homeTab.title = "Movies"
+        homeTab.image = UIImage(systemName: "movieclapper")
+        homeTab.selectedImage = UIImage(systemName: "movieclapper.fill")
+        homeController.tabBarItem = homeTab
+        
+        // Profile Controller
+        let profileController = UINavigationController()
+        homeController.setNavigationBarHidden(true, animated: false)
+        profileCoordinator = ProfileCoordinator(navigationController: profileController)
+        profileCoordinator?.parentCoordinator = self
+        profileCoordinator?.start()
+        
+        let profileTab = UITabBarItem()
+        profileTab.title = "Profile"
+        profileTab.image = UIImage(systemName: "person")
+        profileTab.selectedImage = UIImage(systemName: "person.fill")
+        profileController.tabBarItem = profileTab
+        
+        
+        tabBarController.viewControllers = [homeController, profileController]
+        
+        navigationController.pushViewController(tabBarController, animated: true)
+        
+        self.children.append(homeCoordinator ?? HomeCoordinator(navigationController: UINavigationController()))
+        
+        self.children.append(profileCoordinator ?? ProfileCoordinator(navigationController: UINavigationController()))
     }
 }
 

@@ -33,7 +33,7 @@ final class HomeColletionLayout {
         group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
 
         let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = NSDirectionalEdgeInsets(top: 12, leading: 12, bottom: 10, trailing: 12)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 12, bottom: 0, trailing: 12)
         section.orthogonalScrollingBehavior = .groupPagingCentered
         
 //         PLay with some animation and scrollOffest
@@ -58,7 +58,7 @@ final class HomeColletionLayout {
         group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 15)
 
         let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = NSDirectionalEdgeInsets(top: 12, leading: 12, bottom: 12, trailing: 12)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 12, bottom: 0, trailing: 12)
         section.orthogonalScrollingBehavior = .continuous
         
         return section
