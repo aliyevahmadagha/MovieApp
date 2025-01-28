@@ -10,22 +10,23 @@ import UIKit
 
 final class FavoriteCell: UICollectionViewCell {
     
-    private lazy var movieImage: ReusableImage = {
-        let image = ReusableImage(imageName: "", contentMode: .scaleAspectFill, cornerRadius: 10)
+    private lazy var movieImage: UIImageView = {
+        let image = UIImageView()
+        image.contentMode = .scaleToFill
         return image
     }()
     private lazy var movieName: ReusableLabel = {
-        let label = ReusableLabel(text: "", textAlignment: .left, fontName: "Times New Roman", fontSize: 30, textColor: .label, numberOfLines: 0, cornerRadius: 0)
+        let label = ReusableLabel(text: "", textAlignment: .center, fontName: "Times New Roman", fontSize: 16, textColor: .label, numberOfLines: 0, cornerRadius: 0)
         return label
     }()
     
     private lazy var movieStack: UIStackView = {
-        let s = UIStackView(arrangedSubviews: [movieImage, movieName])
-        s.alignment = .fill
-        s.distribution = .fill
-        s.axis = .vertical
-        s.spacing = 12
-        return s
+        let stack = UIStackView(arrangedSubviews: [movieImage, movieName])
+        stack.alignment = .fill
+        stack.distribution = .fill
+        stack.axis = .vertical
+        stack.spacing = 4
+        return stack
     }()
     
     override init(frame: CGRect) {
@@ -40,7 +41,7 @@ final class FavoriteCell: UICollectionViewCell {
     private func configureUI() {
         addSubview(movieStack)
         movieImage.heightAnchor.constraint(
-            equalTo: heightAnchor, multiplier: 0.8)
+            equalTo: heightAnchor, multiplier: 0.7)
         .isActive = true
         movieStack.fillSuperview()
     }

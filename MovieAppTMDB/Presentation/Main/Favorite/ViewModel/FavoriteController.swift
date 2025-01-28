@@ -25,7 +25,7 @@ final class FavoriteController: BaseController {
     
     private lazy var refreshController: UIRefreshControl = {
         let r = UIRefreshControl()
-        r.addTarget(self, action: #selector(reloadPage), for: .valueChanged)
+        r.addTarget(self, action: #selector(reloadCollection), for: .valueChanged)
         return r
     }()
     
@@ -54,6 +54,7 @@ final class FavoriteController: BaseController {
         configureCollection()
         configureViewModel()
         configureCompositionalLayout()
+        setNotification()
     }
     
     fileprivate func configureCollection() {
@@ -94,8 +95,18 @@ final class FavoriteController: BaseController {
         }
     }
     
-    @objc func reloadPage(){
+    @objc func reloadCollection(){
         viewModel.getFavorite()
+    }
+    
+    private func setNotification(){
+        print(#function)
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadCollection), name: NSNotification.Name("FavoriteCollectionReload"), object: nil)
+    }
+    
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name("FavoriteCollectionReload"), object: nil)
     }
 }
 

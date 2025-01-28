@@ -24,13 +24,13 @@ final class CoreAPIManager {
         var request = URLRequest(url: url)
         
         request.allHTTPHeaderFields = CoreAPIHelper.instance.makeHeader()
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = method.rawValue
         if !body.isEmpty {
             let bodyData = try? JSONSerialization.data(withJSONObject: body, options: [])
             request.httpBody = bodyData
             print("body: \(String(data: try! JSONSerialization.data(withJSONObject: body, options: .prettyPrinted), encoding: .utf8)!)")
         }
-        
         
         let task = session.dataTask(with: request) { [weak self] data, response, error in
             guard let self = self else {return}

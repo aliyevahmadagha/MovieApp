@@ -9,6 +9,8 @@ import UIKit
 
 final class MovieDetailController: BaseController {
     
+    let defaults = UserDefaults.standard
+    
     private lazy var backgroundImage: UIImageView = {
         let image = UIImageView()
         image.alpha = 0.4
@@ -58,8 +60,12 @@ final class MovieDetailController: BaseController {
     }()
     
     private lazy var favoriteImage: UIImageView = {
+        let addFavoritegesture = UITapGestureRecognizer()
+        addFavoritegesture.addTarget(self, action: #selector(favoriteClicked))
         let image = UIImageView()
-        image.image = UIImage(systemName: "heart")
+        image.image = UIImage(systemName: defaults.string(forKey: "favoriteState") ?? "heart")
+        image.isUserInteractionEnabled = true
+        image.addGestureRecognizer(addFavoritegesture)
         image.tintColor = .red
         return image
     }()
@@ -120,6 +126,7 @@ final class MovieDetailController: BaseController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        defaults.set("heart", forKey: "favoriteState")
     }
     
     override func configureView() {
@@ -179,6 +186,21 @@ final class MovieDetailController: BaseController {
             DispatchQueue.main.async {
                 self.viewModel.watchTrailer(url: link)
             }
+        }
+    }
+    
+    @objc private func favoriteClicked() {
+        
+        switch favoriteImage.image {
+        case UIImage(systemName: "heart"):
+            defaults.set("heart.fill", forKey: "favoriteState")
+            favoriteImage.image = UIImage(systemName: "heart.fill")
+            viewModel.addFavorite()
+        case UIImage(systemName: "heart.fill"):
+            defaults.set("heart", forKey: "favoriteState")
+            favoriteImage.image = UIImage(systemName: "heart")
+            viewModel.removeFavorite()
+        default: break
         }
     }
 }

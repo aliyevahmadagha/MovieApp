@@ -13,6 +13,8 @@ final class FavoriteSectionCell: UICollectionViewCell {
     private lazy var favoriteLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
+        label.font = UIFont.systemFont(ofSize: 20)
+        label.textColor = .purple
         label.text = "My Favorite Movies"
         return label
     }()
