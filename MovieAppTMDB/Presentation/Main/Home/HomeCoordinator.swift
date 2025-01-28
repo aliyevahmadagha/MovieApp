@@ -24,11 +24,14 @@ final class HomeCoordinator: Coordinator {
 }
 
 extension HomeCoordinator: HomeNavigation {
-     
-    func showDetail(detail: MovieDetail) {
-        let controller = MovieDetailController(viewModel: .init(navigation: self, movieDetail: detail))
-        showController(controller: controller)
+    func showTrailer(url: String) {
+        let controller = WebViewController(url: url)
+        navigationController.show(controller, sender: nil)
     }
     
-    
+    func showDetail(detail: MovieDetail) {
+        let controller = MovieDetailController(viewModel: .init(navigation: self, movieDetail: detail))
+        controller.hidesBottomBarWhenPushed = true
+        showController(controller: controller)
+    }
 }

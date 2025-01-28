@@ -6,6 +6,7 @@
 //
 
 import UIKit.UINavigationController
+import SafariServices
 
 protocol Coordinator {
     
@@ -18,6 +19,12 @@ protocol Coordinator {
 extension Coordinator {
     
     func showController(controller: UIViewController) {
+        navigationController.show(controller, sender: nil)
+    }
+    
+    func showWebPage(url: String) {
+        guard let url = URL(string: url) else {return}
+        let controller = SFSafariViewController(url: url)
         navigationController.show(controller, sender: nil)
     }
 }

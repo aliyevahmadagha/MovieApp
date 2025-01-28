@@ -7,4 +7,5 @@
 
 protocol HomeNavigation: AnyObject {
     func showDetail(detail: MovieDetail)
+    func showTrailer(url: String)
 }

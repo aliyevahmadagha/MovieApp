@@ -9,6 +9,9 @@ import Foundation
 
 struct MovieDetail {
     let icon: String
-    let title: String
+    let name: String
     let date: String
+    let movieId: String
+    let movieLanguage: String
+    let movieRating: String
 }

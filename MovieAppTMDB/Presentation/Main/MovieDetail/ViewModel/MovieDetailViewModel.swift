@@ -7,6 +7,8 @@
 
 import Foundation
 
+
+
 final class MovieDetailViewModel {
     
     enum ViewState {
@@ -16,10 +18,18 @@ final class MovieDetailViewModel {
         case error(String)
     }
     
-    private weak var navigation: HomeNavigation?
+    private var movieId: String {
+        String(movieDetail.movieId)
+    }
+    
     var requestCallback: ((ViewState) -> Void)?
     
+    private weak var navigation: HomeNavigation?
     private let movieDetail: MovieDetail
+    private let trailerUseCase: TrailerUseCase
+    private(set) var trailerDTO: TrailerDTO?
+    private var trailerResults: TrailerResult?
+    
     
     init(
         navigation: HomeNavigation,
@@ -27,12 +37,49 @@ final class MovieDetailViewModel {
     ) {
         self.navigation = navigation
         self.movieDetail = movieDetail
-//        print(movieDetail)
+        trailerUseCase = TrailerAPIService()
     }
     
     func getAllDetail() -> MovieDetail {
         movieDetail
     }
-
+    
+    func watchTrailer(url: String) {
+          navigation?.showTrailer(url: url)
+    }
+    
+    func getTrailerRequest() {
+        requestCallback?(.loading)
+        trailerUseCase.getTrailerRequest(movieId: movieId) { [weak self] dto, error in
+            guard let self = self else { return }
+            requestCallback?(.loaded)
+            if let dto = dto {
+                self.trailerDTO = dto
+                self.trailerResults = dto.results.first
+                requestCallback?(.success)
+            } else if let error = error {
+                requestCallback?(.error(error))
+            }
+        }
+    }
+    
+    func getTrailerLink(completion: @escaping (String) -> Void) {
+        getTrailerRequest()
+        requestCallback = { [weak self] state in
+            guard let self = self else {return}
+            switch state {
+            case .success:
+                if let trailerPath = self.trailerResults?.trailerPath {
+                    completion(trailerPath)
+                } else {
+                    completion("No trailer link")
+                }
+            case .error(_):
+                completion("error request")
+            default:
+                break
+            }
+        }
+    }
     
 }

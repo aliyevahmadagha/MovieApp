@@ -71,6 +71,6 @@ extension NowPlayingResult: CellProtocol {
 extension NowPlayingResult {
     
     func mapToDomain() -> MovieDetail  {
-        .init(icon: iconURL, title: movieName, date: movieDate)
+        .init(icon: iconURL, name: movieName, date: movieDate, movieId: "\(id ?? 0)", movieLanguage: originalLanguage ?? "empty", movieRating: "\(voteAverage ?? 0.0)")
     }
 }
