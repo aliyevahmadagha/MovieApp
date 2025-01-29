@@ -71,6 +71,8 @@ extension UpcomingResult: CellProtocol {
     }
 }
 
+typealias UpcomingResultList = [UpcomingResult]
+
 extension UpcomingResult {
     
     func mapToDomain() -> MovieDetail  {

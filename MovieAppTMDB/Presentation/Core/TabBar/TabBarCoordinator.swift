@@ -20,7 +20,6 @@ final class TabBarCoordinator: Coordinator {
     
     private var tabBarController = TabBarController()
     private var homeCoordinator: HomeCoordinator?
-    private var profileCoordinator: ProfileCoordinator?
     private var favoriteCoordinator: FavoriteCoordinator?
     private var searchCoordinator: SearchCoordinator?
     
@@ -43,18 +42,6 @@ final class TabBarCoordinator: Coordinator {
         homeTab.image = UIImage(systemName: "movieclapper")
         homeTab.selectedImage = UIImage(systemName: "movieclapper.fill")
         homeController.tabBarItem = homeTab
-        
-        // Profile Controller
-        let profileController = UINavigationController()
-        profileCoordinator = ProfileCoordinator(navigationController: profileController)
-        profileCoordinator?.parentCoordinator = self
-        profileCoordinator?.start()
-        
-        let profileTab = UITabBarItem()
-        profileTab.title = "Profile"
-        profileTab.image = UIImage(systemName: "person")
-        profileTab.selectedImage = UIImage(systemName: "person.fill")
-        profileController.tabBarItem = profileTab
         
         // Favorite Controller
         let favoriteController = UINavigationController()
@@ -80,16 +67,14 @@ final class TabBarCoordinator: Coordinator {
         searchTab.selectedImage = UIImage(systemName: "magnifyingglass.circle.fill")
         searchController.tabBarItem = searchTab
         
-        tabBarController.viewControllers = [homeController, favoriteController, searchController, profileController]
+        tabBarController.viewControllers = [homeController, favoriteController, searchController]
         
         navigationController.setViewControllers([tabBarController], animated: true)
         
         
         self.children.append(homeCoordinator ?? HomeCoordinator(navigationController: UINavigationController()))
-        
-        self.children.append(profileCoordinator ?? ProfileCoordinator(navigationController: UINavigationController()))
-        
         self.children.append(favoriteCoordinator ?? FavoriteCoordinator(navigationController: UINavigationController()))
+        self.children.append(searchCoordinator ?? SearchCoordinator(navigationController: UINavigationController()))
     }
 }
 

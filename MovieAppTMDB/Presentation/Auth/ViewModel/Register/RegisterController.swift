@@ -22,6 +22,7 @@ final class RegisterController: BaseController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureFields()
     }
     
     private lazy var registerButton: UIButton = {
@@ -77,7 +78,20 @@ final class RegisterController: BaseController {
             showMessage(message: "The password cannot be less than 8 characters.", actionTitle: "Ok")
             return
         }
+        
+        guard email.isValidEmail() else {
+            showMessage(message: "Wrong Email Format", actionTitle: "Ok")
+            return
+        }
+        
         viewModel.createUser(email: email, password: password)
+        viewModel.backLogin()
+    }
+    
+    
+    fileprivate func configureFields() {
+        emailField.delegate = self
+        passwordField.delegate = self
     }
     
     override func configureView() {
@@ -123,7 +137,30 @@ final class RegisterController: BaseController {
             emailField.heightAnchor.constraint(equalToConstant: 36),
             passwordField.heightAnchor.constraint(equalToConstant: 36)
         ])
+    }
+}
+
+extension RegisterController: UITextFieldDelegate {
+    
+    func textFieldDidChangeSelection(_ textField: UITextField) {
         
+        guard let text = textField.text else {return}
+        switch textField {
+        case emailField:
+            if text.isValidEmail() {
+                textField.layer.borderColor = UIColor.green.cgColor
+            } else {
+                textField.layer.borderColor = UIColor.red.cgColor
+            }
+        case passwordField:
+            if text.isValidPassword() {
+                textField.layer.borderColor = UIColor.green.cgColor
+            } else {
+                textField.layer.borderColor = UIColor.red.cgColor
+            }
+        default:
+            break
+        }
     }
 }
     

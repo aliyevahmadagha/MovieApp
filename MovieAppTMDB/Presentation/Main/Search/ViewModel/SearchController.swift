@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 final class SearchController: BaseController {
+
     
     private let viewModel: SearchViewModel
     
