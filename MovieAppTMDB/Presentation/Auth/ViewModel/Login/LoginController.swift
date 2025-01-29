@@ -71,12 +71,17 @@ final class LoginController: BaseController {
     
     @objc private func loginClicked() {
         
-        guard let email = emailField.text, let password = passwordField.text else {return}
-        guard email.count >= 5, password.count  >= 8 else {return}
+        guard let email = emailField.text, let password = passwordField.text else {
+            showMessage(message: "fields can not be empty", actionTitle: "Ok")
+            return
+        }
+        guard email.count >= 5, password.count  >= 8 else {
+            showMessage(message: "wrong email or password format", actionTitle: "Ok")
+            return
+        }
         viewModel.checkUser(email: email, password: password)
         defaults.set(true, forKey: "isLogin")
         rootNotification()
-        
     }
     
     fileprivate func configureViewModel() {

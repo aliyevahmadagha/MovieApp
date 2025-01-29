@@ -38,7 +38,7 @@ final class AppCoordinator: Coordinator {
         if isLogin {
             showHome()
         } else {
-            showHome()
+            showAuth()
         }
     }
     
