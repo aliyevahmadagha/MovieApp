@@ -72,6 +72,30 @@ final class LoginController: BaseController {
     @objc private func loginClicked() {
         
         guard let email = emailField.text, let password = passwordField.text else {return}
+        guard email.count >= 5, password.count  >= 8 else {return}
+        viewModel.checkUser(email: email, password: password)
+        defaults.set(true, forKey: "isLogin")
+        rootNotification()
+        
+    }
+    
+    fileprivate func configureViewModel() {
+        viewModel.requestCallback = { [weak self] state in
+            guard let self = self else {return}
+            
+            switch state {
+            case .success:
+                defaults.set(true, forKey: "isLogin")
+                rootNotification()
+            case .error(let error):
+                defaults.set(false, forKey: "isLogin")
+                self.showMessage(message: "There is some a problem", actionTitle: "Ok")
+            }
+        }
+    }
+    
+    fileprivate func rootNotification() {
+        NotificationCenter.default.post(name: NSNotification.Name("switchRoot"), object: nil)
     }
     
     @objc private func showRegister() {

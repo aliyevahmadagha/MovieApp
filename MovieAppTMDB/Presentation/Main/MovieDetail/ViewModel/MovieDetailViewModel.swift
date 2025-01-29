@@ -7,8 +7,6 @@
 
 import Foundation
 
-
-
 final class MovieDetailViewModel {
     
     enum ViewState {

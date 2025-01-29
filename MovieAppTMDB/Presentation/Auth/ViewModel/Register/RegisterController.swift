@@ -69,16 +69,15 @@ final class RegisterController: BaseController {
         }
         
         guard email.count > 5 else {
-            showMessage(title: "", message: "wrong email format", actionTitle: "Ok")
+            showMessage(message: "wrong email format", actionTitle: "Ok")
             return
         }
         
         guard password.count >= 8 else {
-            showMessage(title: "", message: "The password cannot be less than 8 characters.", actionTitle: "Ok")
+            showMessage(message: "The password cannot be less than 8 characters.", actionTitle: "Ok")
             return
         }
         viewModel.createUser(email: email, password: password)
-        viewModel.backLogin()
     }
     
     override func configureView() {

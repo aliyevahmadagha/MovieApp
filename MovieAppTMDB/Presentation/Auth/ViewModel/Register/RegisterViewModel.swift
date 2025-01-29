@@ -8,8 +8,6 @@
 final class RegisterViewModel {
     
     enum ViewState {
-        case loading
-        case loaded
         case success
         case error(String)
     }
@@ -18,7 +16,7 @@ final class RegisterViewModel {
     private let navigation: AuthNavigation
     
     var requestCallback: ((ViewState) -> Void)?
-    var callback: (() -> Void)?
+    var callback: ((String, String) -> Void)?
     
     init(navigation: AuthNavigation) {
         self.navigation = navigation
@@ -26,10 +24,8 @@ final class RegisterViewModel {
     }
     
     func createUser(email: String, password: String) {
-        requestCallback?(.loading)
         helper.register(email: email, password: password) { [weak self] dto, error in
             guard let self = self else {return}
-            self.requestCallback?(.loaded)
             guard let _ = dto else {
                 self.requestCallback?(.error("\(error ?? "error")"))
                 return

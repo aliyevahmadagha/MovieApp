@@ -26,6 +26,7 @@ final class LoginViewModel {
         navigation.showRegister()
     }
     
+    
     func checkUser(email: String, password: String) {
         helper.login(email: email, password: password) { [weak self] dto, error in
             guard let self = self else {return}

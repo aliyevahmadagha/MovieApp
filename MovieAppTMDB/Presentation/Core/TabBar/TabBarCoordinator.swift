@@ -12,8 +12,9 @@ final class TabBarCoordinator: Coordinator {
     var parentCoordinator: Coordinator?
     var children: [Coordinator] = []
     var navigationController: UINavigationController
-    
-    init(navigationController: UINavigationController) {
+    private let window: UIWindow
+    init(window: UIWindow, navigationController: UINavigationController) {
+        self.window = window
         self.navigationController = navigationController
     }
     
@@ -28,6 +29,7 @@ final class TabBarCoordinator: Coordinator {
     }
     
     fileprivate func showTabbar() {
+        
         navigationController.isNavigationBarHidden = true
         
         // Home Controller
@@ -79,7 +81,9 @@ final class TabBarCoordinator: Coordinator {
         searchController.tabBarItem = searchTab
         
         tabBarController.viewControllers = [homeController, favoriteController, searchController, profileController]
-        navigationController.pushViewController(tabBarController, animated: true)
+        
+        navigationController.setViewControllers([tabBarController], animated: true)
+        
         
         self.children.append(homeCoordinator ?? HomeCoordinator(navigationController: UINavigationController()))
         

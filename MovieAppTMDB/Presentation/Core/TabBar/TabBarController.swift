@@ -12,6 +12,7 @@ final class TabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTabBar()
+        defaults.set(false, forKey: "isLogin")
     }
     
     fileprivate func configureTabBar() {

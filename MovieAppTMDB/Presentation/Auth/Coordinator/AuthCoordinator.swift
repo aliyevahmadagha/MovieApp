@@ -9,11 +9,13 @@ import UIKit.UINavigationController
 
 final class AuthCoordinator: Coordinator {
     
+    var window: UIWindow
     var parentCoordinator: Coordinator?
     var children: [Coordinator] = []
     var navigationController: UINavigationController
     
-    init(navigationController: UINavigationController) {
+    init(navigationController: UINavigationController, window: UIWindow) {
+        self.window = window
         self.navigationController = navigationController
     }
     
@@ -24,6 +26,14 @@ final class AuthCoordinator: Coordinator {
 }
 
 extension AuthCoordinator: AuthNavigation {
+    func showHome() {
+        let controller = UINavigationController()
+        let tabBar = TabBarCoordinator(window: window, navigationController: controller)
+        
+        window.rootViewController = controller
+        window.makeKeyAndVisible()
+    }
+    
     
     func showLogin() {
         navigationController.popViewController(animated: true)
