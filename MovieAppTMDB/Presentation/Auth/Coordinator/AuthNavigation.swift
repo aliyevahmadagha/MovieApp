@@ -7,4 +7,5 @@
 
 protocol AuthNavigation: AnyObject {
     func showRegister()
+    func showLogin()
 }

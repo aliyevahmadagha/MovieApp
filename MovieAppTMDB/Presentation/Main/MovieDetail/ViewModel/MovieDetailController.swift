@@ -33,7 +33,7 @@ final class MovieDetailController: BaseController {
     private lazy var showTrailerButton: UIButton = {
         let button = UIButton()
         button.setTitle("➤ Play Trailer", for: .normal)
-        button.setTitleColor(.black, for: .normal)
+        button.setTitleColor(.red, for: .normal)
         button.addTarget(self, action: #selector(showTrailerClicked), for: .touchUpInside)
         return button
     }()
@@ -141,6 +141,7 @@ final class MovieDetailController: BaseController {
         movieImage.loadImageURL(url: viewModel.getAllDetail().icon)
         movieName.text = viewModel.getAllDetail().name
         ratingLabel.text = viewModel.getAllDetail().movieRating
+        ratingLabel.setMaxCharacterLimit(3)
         languageLabel.text = viewModel.getAllDetail().movieLanguage
     }
     
@@ -167,7 +168,7 @@ final class MovieDetailController: BaseController {
         ])
 
         NSLayoutConstraint.activate([
-            movieStack.topAnchor.constraint(equalTo: movieImage.centerYAnchor, constant: 24),
+            movieStack.topAnchor.constraint(equalTo: movieImage.centerYAnchor, constant: 12),
             movieStack.leftAnchor.constraint(equalTo: movieImage.rightAnchor, constant: 24),
         ])
         

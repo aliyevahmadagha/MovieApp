@@ -9,6 +9,15 @@ import Foundation
 import UIKit
 import SDWebImage
 
+extension UILabel {
+    func setMaxCharacterLimit(_ limit: Int) {
+        if let text = self.text, text.count > limit {
+            let index = text.index(text.startIndex, offsetBy: limit)
+            self.text = String(text[..<index])
+        }
+    }
+}
+
 extension Double {
     func convertToString() -> String {
         return String(self)

@@ -16,6 +16,9 @@ final class TrendingSegmentCell: UICollectionViewCell {
     private lazy var segmentController: UISegmentedControl = {
         let segment = UISegmentedControl(items: ["Day", "Week"])
         segment.addTarget(self, action: #selector(segmentClicked), for: .valueChanged)
+        segment.tintColor = .purple
+        segment.layer.borderWidth = 2
+        segment.backgroundColor = .systemPurple
         segment.selectedSegmentIndex = 0
         return segment
     }()
@@ -28,7 +31,7 @@ final class TrendingSegmentCell: UICollectionViewCell {
     private lazy var segmentLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 24)
-        label.textColor = .blue
+        label.textColor = .purple
         return label
     }()
     
@@ -53,6 +56,7 @@ final class TrendingSegmentCell: UICollectionViewCell {
     
     fileprivate func configureUI() {
         contentView.addSubview(segmentStack)
+        segmentController.widthAnchor.constraint(equalTo: segmentStack.widthAnchor, multiplier: 0.4).isActive = true
         segmentStack.translatesAutoresizingMaskIntoConstraints = false
         segmentStack.fillSuperview()
     }

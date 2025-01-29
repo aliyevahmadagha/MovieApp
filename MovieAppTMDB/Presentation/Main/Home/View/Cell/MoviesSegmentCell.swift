@@ -20,7 +20,7 @@ final class MoviesSegmentCell: UICollectionViewCell {
     
     private lazy var segmentLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .blue
+        label.textColor = .purple
         label.font = UIFont.systemFont(ofSize: 24)
         return label
     }()

@@ -18,15 +18,20 @@ final class AuthCoordinator: Coordinator {
     }
     
     func start() {
-        showLogin()
+        let controller = LoginController(viewModel: .init(navigation: self))
+        showController(controller: controller)
+    }
+}
+
+extension AuthCoordinator: AuthNavigation {
+    
+    func showLogin() {
+        navigationController.popViewController(animated: true)
     }
     
-    fileprivate func showLogin() {
-        children.removeAll()
-        let coordinator = LoginCoordinator(navigationController: navigationController)
-        children.append(coordinator)
-        coordinator.parentCoordinator = self
-        coordinator.start()
+    func showRegister() {
+        let controller = RegisterController(viewModel: .init(navigation: self))
+        showController(controller: controller)
     }
 }
 

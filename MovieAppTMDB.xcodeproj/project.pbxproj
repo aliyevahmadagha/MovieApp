@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		D08E00662D438DBC00AC45AF /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = D08E00652D438DBC00AC45AF /* SDWebImage */; };
+		D0FC801E2D49E88400459DCD /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = D0FC801D2D49E88400459DCD /* FirebaseCore */; };
+		D0FC80202D49E9C700459DCD /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D0FC801F2D49E9C700459DCD /* FirebaseAuth */; };
+		D0FC80222D49E9D500459DCD /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = D0FC80212D49E9D500459DCD /* FirebaseFirestore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +43,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0FC801E2D49E88400459DCD /* FirebaseCore in Frameworks */,
+				D0FC80222D49E9D500459DCD /* FirebaseFirestore in Frameworks */,
+				D0FC80202D49E9C700459DCD /* FirebaseAuth in Frameworks */,
 				D08E00662D438DBC00AC45AF /* SDWebImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -51,6 +57,7 @@
 			isa = PBXGroup;
 			children = (
 				D08EF9032D367B8300AC45AF /* MovieAppTMDB */,
+				D0FC801C2D49E88400459DCD /* Frameworks */,
 				D08EF9022D367B8300AC45AF /* Products */,
 			);
 			sourceTree = "<group>";
@@ -61,6 +68,13 @@
 				D08EF9012D367B8300AC45AF /* MovieAppTMDB.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		D0FC801C2D49E88400459DCD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -84,6 +98,9 @@
 			name = MovieAppTMDB;
 			packageProductDependencies = (
 				D08E00652D438DBC00AC45AF /* SDWebImage */,
+				D0FC801D2D49E88400459DCD /* FirebaseCore */,
+				D0FC801F2D49E9C700459DCD /* FirebaseAuth */,
+				D0FC80212D49E9D500459DCD /* FirebaseFirestore */,
 			);
 			productName = MovieAppTMDB;
 			productReference = D08EF9012D367B8300AC45AF /* MovieAppTMDB.app */;
@@ -115,6 +132,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				D08E00642D438DBC00AC45AF /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				D0FC80192D49E7EF00459DCD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = D08EF9022D367B8300AC45AF /* Products */;
@@ -167,6 +185,10 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.swift.MovieAppTMDB;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -193,6 +215,10 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.swift.MovieAppTMDB;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -350,6 +376,14 @@
 				minimumVersion = 5.20.0;
 			};
 		};
+		D0FC80192D49E7EF00459DCD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.7.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -357,6 +391,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D08E00642D438DBC00AC45AF /* XCRemoteSwiftPackageReference "SDWebImage" */;
 			productName = SDWebImage;
+		};
+		D0FC801D2D49E88400459DCD /* FirebaseCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D0FC80192D49E7EF00459DCD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCore;
+		};
+		D0FC801F2D49E9C700459DCD /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D0FC80192D49E7EF00459DCD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		D0FC80212D49E9D500459DCD /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D0FC80192D49E7EF00459DCD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -18,7 +18,7 @@ final class AppCoordinator: Coordinator {
     }
     
     func start() {
-        showHome()
+        showAuth()
     }
     
     fileprivate func showHome() {
