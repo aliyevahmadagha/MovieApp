@@ -85,6 +85,7 @@ final class LoginController: BaseController {
     }
     
     fileprivate func configureViewModel() {
+        
         viewModel.requestCallback = { [weak self] state in
             guard let self = self else {return}
             
@@ -94,7 +95,7 @@ final class LoginController: BaseController {
                 rootNotification()
             case .error(let error):
                 defaults.set(false, forKey: "isLogin")
-                self.showMessage(message: "There is some a problem", actionTitle: "Ok")
+                self.showMessage(message: error, actionTitle: "Ok")
             }
         }
     }

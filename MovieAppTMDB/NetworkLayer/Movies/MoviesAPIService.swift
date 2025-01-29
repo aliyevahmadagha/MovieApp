@@ -9,12 +9,24 @@ final class MoviesAPIService: MoviesUseCase {
     
     private let apiService = CoreAPIManager.instance
     
-    func getUpcoming(completion: @escaping (UpcomingDTO?, String?) -> Void?) {
+    func getMovieSearch(query: String, page: String, completion: @escaping (MovieSearchDTO?, String?) -> Void?) {
+        apiService.request(type: MovieSearchDTO.self, url: MoviesHelper.searchMovie(query: query, page: page).endpoint, method: .GET) { [weak self] result in
+            guard let self else {return}
+            switch result {
+            case .success(let data):
+                completion(data, nil)
+            case .failure(let error):
+                completion(nil, error.localizedDescription)
+            }
+        }
+    }
+    
+    func getUpcoming(completion: @escaping (UpcomingDTO?, String?) -> Void) {
         apiService.request(
             type: UpcomingDTO.self,
             url: MoviesHelper.upComing.endpoint,
             method: .GET) { [weak self] result in
-                guard let _ = self else {return}
+                guard let self else {return}
                 
                 switch result {
                 case .success(let data):
@@ -30,7 +42,7 @@ final class MoviesAPIService: MoviesUseCase {
             type: TopRatedDTO.self,
             url: MoviesHelper.topRated.endpoint,
             method: .GET) { [weak self] result in
-                guard let _ = self else {return}
+                guard let self else {return}
                 
                 switch result {
                 case .success(let data):
@@ -46,7 +58,7 @@ final class MoviesAPIService: MoviesUseCase {
             type: NowPlayingDTO.self,
             url: MoviesHelper.nowPlaying.endpoint,
             method: .GET) { [weak self] result in
-                guard let _ = self else {return}
+                guard let self else {return}
                 
                 switch result {
                 case .success(let data):
@@ -62,7 +74,7 @@ final class MoviesAPIService: MoviesUseCase {
             type: PopularDTO.self,
             url: MoviesHelper.popular.endpoint,
             method: .GET) { [weak self] result in
-                guard let _ = self else {return}
+                guard let self else {return}
                 
                 switch result {
                 case .success(let data):
