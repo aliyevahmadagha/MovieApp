@@ -81,11 +81,10 @@ final class LoginController: BaseController {
         }
         viewModel.checkUser(email: email, password: password)
         defaults.set(true, forKey: "isLogin")
-        rootNotification()
+        configureViewModel()
     }
     
     fileprivate func configureViewModel() {
-        
         viewModel.requestCallback = { [weak self] state in
             guard let self = self else {return}
             

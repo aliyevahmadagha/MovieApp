@@ -46,7 +46,6 @@ final class SearchCell: UITableViewCell {
             equalTo: widthAnchor, multiplier: 0.3)
         .isActive = true
         movieName.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.4).isActive = true
-        
         stackView.fillSuperview(padding: .init(all: 10))
     }
     

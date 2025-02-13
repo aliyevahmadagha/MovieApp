@@ -34,6 +34,8 @@ final class LoginViewModel {
                 self.requestCallback?(.error("\(error ?? "there is not user")"))
                 return
             }
+            print(dto)
+            guard dto.email == email, dto.password == password else {return}
             self.requestCallback?(.success)
         }
     }
