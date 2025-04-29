@@ -25,7 +25,6 @@ final class FireBaseHelper {
             if let error = error {
                 completion(nil, error.localizedDescription)
             } else if let user = authResult?.user {
-//                completion(.init(email: user.email ?? "", password: ""), nil)
                 completion(UserDTO(email: email, password: password), nil)
             }
         }

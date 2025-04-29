@@ -12,29 +12,7 @@ import FirebaseCore
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
         FirebaseApp.configure()
-//        Auth.auth().createUser(withEmail: "aliyev@gmail.com", password: "1234567890") { [weak self] result, error in
-//            guard let _ = self else {return}
-//            guard let result = result else {
-//                guard let error = error else {return}
-//                print(error)
-//                return
-//            }
-//            print(result)
-//        }
-        
-//        Auth.auth().signIn(withEmail: "aliyev@gmail.com", password: "1234567890") { [weak self] result, error in
-//            guard let _ = self else {return}
-//            guard let result = result else {
-//                guard let error = error else {return}
-//                print(error)
-//                return
-//            }
-//            print(result)
-//        }
-        
-        
         return true
     }
 

@@ -45,5 +45,4 @@ final class WebViewController: BaseController {
         webView.translatesAutoresizingMaskIntoConstraints = false
         webView.fillSuperviewSafeAreaLayoutGuide()
     }
-     
 }
